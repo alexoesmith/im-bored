@@ -17,9 +17,9 @@ module.exports = {
     }),
     extend: {
       colors: {
-        body: "#fef6e4",
+        body: "#eff0f3",
         "body-dark": "#16161a",
-        action: "#c3f0ca",
+        action: "#ff8e3c",
         "action-dark": "#f25f4c",
       },
       fontFamily: {

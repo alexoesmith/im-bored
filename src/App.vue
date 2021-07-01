@@ -32,7 +32,7 @@
       <button
         @click="getActivity"
         class="
-          bg-body-dark
+          bg-action
           dark:bg-action-dark
           text-white
           rounded-lg
