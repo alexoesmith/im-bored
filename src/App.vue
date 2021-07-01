@@ -62,9 +62,6 @@ export default {
   },
   created() {
     this.setViewHeight();
-    window.addEventListener("resize", () => {
-      this.setViewHeight();
-    });
   },
 };
 </script>
