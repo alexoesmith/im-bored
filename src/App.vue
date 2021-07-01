@@ -54,12 +54,8 @@
 <script>
 import { ref } from "@vue/reactivity";
 import axios from "axios";
-import Loading from "./components/Loading.vue";
 
 export default {
-  components: {
-    Loading,
-  },
   setup() {
     const activity = ref(null);
     const loading = ref(null);
