@@ -13,16 +13,16 @@
     "
   >
     <h1 class="text-2xl font-bold underline absolute top-10">I am bored.</h1>
-    <p v-if="!activity && !loading" class="text-6xl md:text-8xl text-center">
+    <p v-show="!activity && !loading" class="text-6xl md:text-8xl text-center">
       Bored?
       <span class="text-2xl pt-6 block dark:text-white"
         >Click the button below for a random activity!</span
       >
     </p>
-    <div v-if="!loading">
+    <div v-show="!loading">
       <p v-if="activity" class="text-3xl text-center" id="acivity">{{ activity.data.activity }}.</p>
     </div>
-    <div v-if="loading">
+    <div v-show="loading">
       <p class="text-3xl text-center opacity-30">I am loading...</p>
     </div>
     <div v-if="error">
@@ -31,18 +31,7 @@
     <div class="w-full px-10 absolute bottom-10">
       <button
         @click="getActivity"
-        class="
-          bg-action
-          dark:bg-action-dark
-          text-white
-          rounded-lg
-          px-6
-          py-6
-          w-full
-          shadow-sm
-          text-2xl
-          font-bold
-        "
+        class="bg-action-dark text-white rounded-lg px-6 py-6 w-full shadow-sm text-2xl font-bold"
       >
         <span v-if="activity">I'm still bored...</span>
         <span v-else>I am bored...</span>
