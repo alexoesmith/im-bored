@@ -23,7 +23,7 @@
       <p v-if="activity" class="text-3xl text-center" id="acivity">{{ activity.data.activity }}.</p>
     </div>
     <div v-if="loading">
-      <p class="text-3xl text-center">Loading...</p>
+      <p class="text-3xl text-center opacity-30">Loading...</p>
     </div>
     <div v-if="error">
       <p class="text-sm text-center">An error has occured, please try again later.</p>
@@ -37,7 +37,7 @@
           text-white
           rounded-lg
           px-6
-          py-4
+          py-6
           w-full
           shadow-sm
           text-2xl
