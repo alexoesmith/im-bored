@@ -12,7 +12,7 @@ const getActivity = () => {
     count.value++;
     if (count.value <= 50) {
       try {
-        const res = await axios.request("https://www.boredapi.com/api/activitysss");
+        const res = await axios.request("https://www.boredapi.com/api/activity");
         activity.value = res.data;
       } catch (error) {
         error.value = error;
