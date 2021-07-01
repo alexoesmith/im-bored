@@ -19,10 +19,17 @@
         >Click the button below for a random activity!</span
       >
     </p>
-    <div v-show="!loading">
-      <p v-if="activity" class="text-3xl text-center" id="acivity">{{ activity.data.activity }}.</p>
+    <div v-if="count <= 50">
+      <div v-show="!loading">
+        <p v-if="activity" class="text-3xl text-center" id="acivity">
+          {{ activity.data.activity }}.
+        </p>
+      </div>
     </div>
-    <div v-show="loading">
+    <div v-else>
+      <h3 class="text-6xl font-semibold text-center">Ok, I give up.</h3>
+    </div>
+    <div v-show="loading && count <= 50">
       <p class="text-3xl text-center opacity-30">I am loading...</p>
     </div>
     <div v-if="error">
@@ -33,8 +40,8 @@
         @click="getActivity"
         class="bg-action-dark text-white rounded-lg px-6 py-6 w-full shadow-sm text-2xl font-bold"
       >
-        <span v-if="activity">I'm still bored...</span>
-        <span v-else>I am bored...</span>
+        <span v-if="!activity">I am bored...</span>
+        <span v-else>I'm still bored...</span>
       </button>
     </div>
   </div>
@@ -49,19 +56,23 @@ export default {
     const activity = ref(null);
     const loading = ref(null);
     const error = ref("");
+    const count = ref(0);
 
     const getActivity = async () => {
       loading.value = true;
-      try {
-        const result = await axios.request("https://www.boredapi.com/api/activity");
-        activity.value = result;
-      } catch (error) {
-        error.value = error;
-      } finally {
-        loading.value = false;
+      count.value++;
+      if (count.value <= 50) {
+        try {
+          const result = await axios.request("https://www.boredapi.com/api/activity");
+          activity.value = result;
+        } catch (error) {
+          error.value = error;
+        } finally {
+          loading.value = false;
+        }
       }
     };
-    return { activity, getActivity, loading, error };
+    return { activity, getActivity, loading, error, count };
   },
   // Set viewport height for mobile device UI
   methods: {
