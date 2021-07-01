@@ -21,9 +21,7 @@
     </p>
     <div v-if="count <= 50">
       <div v-show="!loading">
-        <p v-if="activity" class="text-3xl text-center" id="acivity">
-          {{ activity.data.activity }}.
-        </p>
+        <p v-if="activity" class="text-3xl text-center" id="acivity">{{ activity.activity }}.</p>
       </div>
     </div>
     <div v-else>
@@ -37,7 +35,7 @@
     </div>
     <div class="w-full px-10 absolute bottom-10">
       <button
-        @click="getActivity"
+        @click="loadActivity"
         class="bg-action-dark text-white rounded-lg px-6 py-6 w-full shadow-sm text-2xl font-bold"
       >
         <span v-if="!activity">I am bored...</span>
@@ -48,31 +46,12 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
-import axios from "axios";
+import getActivity from "./composables/getActivity";
 
 export default {
   setup() {
-    const activity = ref(null);
-    const loading = ref(null);
-    const error = ref("");
-    const count = ref(0);
-
-    const getActivity = async () => {
-      loading.value = true;
-      count.value++;
-      if (count.value <= 50) {
-        try {
-          const result = await axios.request("https://www.boredapi.com/api/activity");
-          activity.value = result;
-        } catch (error) {
-          error.value = error;
-        } finally {
-          loading.value = false;
-        }
-      }
-    };
-    return { activity, getActivity, loading, error, count };
+    const { activity, loading, error, count, loadActivity } = getActivity();
+    return { activity, getActivity, loading, error, count, loadActivity };
   },
   // Set viewport height for mobile device UI
   methods: {
