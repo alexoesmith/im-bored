@@ -12,8 +12,8 @@
       h-screen
     "
   >
-    <h1 class="text-2xl font-bold underline absolute top-10">I am Bored.</h1>
-    <p v-if="!activity && !loading" class="text-7xl sm:text-8xl text-center">
+    <h1 class="text-2xl font-bold underline absolute top-10">I am bored.</h1>
+    <p v-if="!activity && !loading" class="text-6xl md:text-8xl text-center">
       Bored?
       <span class="text-2xl pt-6 block dark:text-white"
         >Click the button below for a random activity!</span
@@ -23,7 +23,7 @@
       <p v-if="activity" class="text-3xl text-center" id="acivity">{{ activity.data.activity }}.</p>
     </div>
     <div v-if="loading">
-      <p class="text-3xl text-center opacity-30">Loading...</p>
+      <p class="text-3xl text-center opacity-30">I am loading...</p>
     </div>
     <div v-if="error">
       <p class="text-sm text-center">An error has occured, please try again later.</p>
