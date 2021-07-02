@@ -1,19 +1,19 @@
 import { ref } from "@vue/reactivity";
 import axios from "axios";
 
-const getActivity = () => {
-  const activity = ref(null);
+const getData = (url) => {
+  const data = ref(null);
   const loading = ref(null);
   const error = ref(null);
   const count = ref(0);
 
-  const loadActivity = async () => {
+  const loadData = async () => {
     loading.value = true;
     count.value++;
     if (count.value <= 50) {
       try {
-        const res = await axios.request("https://www.boredapi.com/api/activity");
-        activity.value = res.data;
+        const res = await axios.request(url);
+        data.value = res.data;
       } catch (error) {
         error.value = error;
       } finally {
@@ -21,7 +21,7 @@ const getActivity = () => {
       }
     }
   };
-  return { activity, getActivity, loading, error, count, loadActivity };
+  return { data, getData, loading, error, count, loadData };
 };
 
-export default getActivity;
+export default getData;
